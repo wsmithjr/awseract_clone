@@ -15,4 +15,6 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-slf4j" % "2.2.3"
 )
 
-unmanagedJars in Compile := (baseDirectory.value ** "*.jar").classpath
+unmanagedJars in Compile <<= baseDirectory map { base => (base ** "*.jar").classpath }
+
+ 

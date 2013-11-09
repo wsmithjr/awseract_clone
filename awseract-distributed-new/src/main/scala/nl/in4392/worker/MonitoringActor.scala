@@ -24,7 +24,7 @@ class MonitorActor(workerId:String,masterPath: ActorPath) extends Actor with Act
 
 
   def receive = {
-    case RequestSystemInfo => sender ! ReportSystemInfo(workerId,new CpuUsage().getInfo.toString())
+    case RequestSystemInfo => sender ! ReportSystemInfo(workerId, new SystemUsage().ToJson(new SystemUsage().getInfo))
   }
 
 

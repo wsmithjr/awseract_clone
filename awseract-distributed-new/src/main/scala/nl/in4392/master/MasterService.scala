@@ -19,7 +19,7 @@ class MasterService extends Bootable {
 
     masterActor ! new Task("aws-task-1","Hello Daniel! I am the first task")
 
-    val bis = new BufferedInputStream(new FileInputStream("/Users/jhejderup/Workspace/Scala/awseract-distributed/src/main/resources/TEST_2.JPG"))
+    val bis = new BufferedInputStream(new FileInputStream("./src/main/resources/TEST_2.JPG"))
     val byteArray = Stream.continually(bis.read).takeWhile(-1 !=).map(_.toByte).toArray
 
     //val inputStream = new FileInputStream(imageFile)
