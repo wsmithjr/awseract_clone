@@ -17,7 +17,7 @@ class MonitorActor(workerId:String,masterPath: ActorPath) extends Actor with Act
   // val workerId = UUID.randomUUID().toString
 
   override def preStart() = {
-    println("Inside preStart")
+    println("MonitoringActor " + workerId + " starts")
     master ! MonitorRegister(workerId)
 
   }
@@ -25,7 +25,8 @@ class MonitorActor(workerId:String,masterPath: ActorPath) extends Actor with Act
   def receive = {
     case RequestSystemInfo =>
       master ! ReportSystemInfo(workerId, new SystemUsage().ToJson(new SystemUsage().getInfo))
-      context.system.scheduler.scheduleOnce(10 seconds, self, RequestSystemInfo)
+      println("MonitoringActor " + workerId + " sends SystemInfo")
+      context.system.scheduler.scheduleOnce(20 seconds, self, RequestSystemInfo)
   }
 
 

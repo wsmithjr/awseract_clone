@@ -46,6 +46,7 @@ class MasterActor extends Actor with ActorLogging {
     case ReportSystemInfo(workerId,json) =>
       val uInfo = new SystemUsage().FromJson(json)
       new LogManager().logSystemUsage(uInfo)
+      println("Master receives SystemInfo from monitor " + workerId)
 
 
 

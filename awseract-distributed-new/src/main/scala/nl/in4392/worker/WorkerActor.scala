@@ -20,7 +20,7 @@ class WorkerActor(workerId: String,masterPath: ActorPath) extends Actor with Act
 
 
   override def preStart() = {
-    println("Inside preStart")
+    println("Worker " + workerId + " starts")
        master ! WorkerRegister(workerId)
 
   }
