@@ -22,8 +22,9 @@ import main.scala.nl.in4392.models.DistributedProtocol.TaskFailed
 import main.scala.nl.in4392.models.DistributedProtocol.WorkerRequestTask
 
 class MasterActor extends Actor with ActorLogging {
-
-
+  import nl.tudelft.ec2interface._
+  import nl.tudelft.ec2interface.sysmonitor._
+  import nl.tudelft.ec2interface.logging._
 
 
   private var jobQueue = Queue[Task]()
@@ -43,7 +44,9 @@ class MasterActor extends Actor with ActorLogging {
 
 
     case ReportSystemInfo(workerId,json) =>
-      println("this is the result"+json)
+      val uInfo = new SystemUsage().FromJson(json)
+      new LogManager().logSystemUsage(uInfo)
+
 
 
     case WorkerRegister(workerId) =>
